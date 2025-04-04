@@ -10,6 +10,7 @@ namespace CatalogProject
     {
         static void Main(string[] args)
         {
+            //zdravei atchi
         }
     }
 }
