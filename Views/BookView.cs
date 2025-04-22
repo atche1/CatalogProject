@@ -16,7 +16,7 @@ namespace CatalogProject.Views
             List<Book> books = bookService.GetAllBooks();
             foreach (var book in books)
             {
-                
+                Console.WriteLine(book.Title);
             }
         }
     }
