@@ -17,5 +17,13 @@ namespace CatalogProject.Services
                 return movies;
             }
         }
+        public List<Director> GetAllDirectors()
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                List<Director> directors = catalogContext.Directors.ToList();
+                return directors;
+            }
+        }
     }
 }

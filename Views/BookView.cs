@@ -10,13 +10,21 @@ namespace CatalogProject.Views
 {
     public class BookView
     {
-        private static BookService bookService = new BookService();
+        private static BookService bookService = new BookService(); 
         public void ShowAllBooks()
         {
             List<Book> books = bookService.GetAllBooks();
             foreach (var book in books)
             {
-                Console.WriteLine(book.Title);
+                Console.WriteLine($"- {book.Title}");
+            }
+        }
+        public void ShowAllAuthors()
+        {
+            List<Author> authors = bookService.GetAllAuthors();
+            foreach (var author in authors)
+            {
+                Console.WriteLine($"- {author.FirstName} {author.LastName}");
             }
         }
     }

@@ -23,5 +23,13 @@ namespace CatalogProject.Services
                 return books;
             }
         }
+        public List<Author> GetAllAuthors()
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                List<Author> authors = catalogContext.Authors.ToList();
+                return authors;
+            }
+        }
     }
 }
