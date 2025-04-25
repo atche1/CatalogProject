@@ -44,5 +44,19 @@ namespace CatalogProject.Views
                 Console.WriteLine("There are no books with this genre!");
             }
         }
+        public void RemoveBookByName()
+        {
+            Console.Write("Please enter the title of the book that you want to remove: ");
+            string bookTitle = Console.ReadLine();
+            Book book = bookService.DeleteBookByName(bookTitle);
+            if (book != null)
+            {
+                Console.WriteLine("Successfully deleted!");
+            }
+            else
+            {
+                Console.WriteLine($"The book with title '{book.Title}' doesn't exists!");
+            }
+        }
     }
 }

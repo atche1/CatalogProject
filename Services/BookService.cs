@@ -10,23 +10,12 @@ namespace CatalogProject.Services
 {
     public class BookService
     {
-
         public List<Book> FilterBookByGenre(string genreName)
         {
             using (var catalogContext = new CatalogContext())
             {
                 var genre = catalogContext.Books.Include(b => b.Genre).Where(b => b.Genre.GenreName == genreName).ToList();
                 return genre;
-            }
-        }
-        static void PrintFilmsByCategoryName()
-        {
-            if (category != null)
-            {
-                foreach (var fc in category.FilmCategories)
-                {
-                    Console.WriteLine(fc.Film.Title);
-                }
             }
         }
         public List<Book> GetAllBooks()
@@ -44,6 +33,15 @@ namespace CatalogProject.Services
                 List<Author> authors = catalogContext.Authors.ToList();
                 return authors;
             }
+        }
+        public Book DeleteBookByName(string bookTitle)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var book = catalogContext.Books.FirstOrDefault(b => b.Title == bookTitle);
+                catalogContext.SaveChanges();
+                return book;
+            }//if a trqbva da e tuka
         }
     }
 }
