@@ -27,5 +27,22 @@ namespace CatalogProject.Views
                 Console.WriteLine($"- {director.FirstName} {director.LastName}");
             }
         }
+        public void ShowBooksByGenre()
+        {
+            Console.Write("Please enter the name of the genre you want to filter with: ");
+            string genreName = Console.ReadLine();
+            List<Movie> movies = movieService.FilterMoviesByGenre(genreName);
+            if (movies != null)
+            {
+                foreach (var movie in movies)
+                {
+                    Console.WriteLine($"- {movie.Title}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("There are no movies with this genre!");
+            }
+        }
     }
 }

@@ -27,5 +27,22 @@ namespace CatalogProject.Views
                 Console.WriteLine($"- {author.FirstName} {author.LastName}");
             }
         }
+        public void ShowBooksByGenre()
+        {
+            Console.Write("Please enter the name of the genre you want to filter with: ");
+            string genreName = Console.ReadLine();
+            List<Book> books = bookService.FilterBookByGenre(genreName);
+            if (books != null)
+            {
+                foreach (var book in books)
+                {
+                    Console.WriteLine($"- {book.Title}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("There are no books with this genre!");
+            }
+        }
     }
 }

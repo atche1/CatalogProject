@@ -10,31 +10,23 @@ namespace CatalogProject.Services
 {
     public class BookService
     {
-        //private readonly CatalogContext catalogContext;
 
-        public void FilterBookByGenre(string genreName)
+        public List<Book> FilterBookByGenre(string genreName)
         {
             using (var catalogContext = new CatalogContext())
             {
-                var category = catalogContext.Movies.Include(m => m.Genre).FirstOrDefault(m => m.Genre.GenreName == genreName);
+                var genre = catalogContext.Books.Include(b => b.Genre).Where(b => b.Genre.GenreName == genreName).ToList();
+                return genre;
             }
         }
         static void PrintFilmsByCategoryName()
         {
-            string categoryName = Console.ReadLine();
-            var category = context.Categories.Include(c => c.FilmCategories).ThenInclude(c => c.Film).FirstOrDefault(c => c.Name == categoryName);
             if (category != null)
             {
                 foreach (var fc in category.FilmCategories)
                 {
                     Console.WriteLine(fc.Film.Title);
                 }
-            }
-            else
-            {
-                Category newCategory = new Category() { Name = categoryName };
-                context.Categories.Add(newCategory);
-                context.SaveChanges();
             }
         }
         public List<Book> GetAllBooks()

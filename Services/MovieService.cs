@@ -1,4 +1,5 @@
 ﻿using CatalogProject.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ namespace CatalogProject.Services
             {
                 List<Director> directors = catalogContext.Directors.ToList();
                 return directors;
+            }
+        }
+        public List<Movie> FilterMoviesByGenre(string genreName)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var genre = catalogContext.Movies.Include(m => m.Genre).Where(m => m.Genre.GenreName == genreName).ToList();
+                return genre;
             }
         }
     }
