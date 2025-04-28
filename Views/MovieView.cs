@@ -58,5 +58,32 @@ namespace CatalogProject.Views
                 Console.WriteLine($"The movie with title '{movieTitle}' doesn't exists!");
             }
         }
+        public void AddMovie()
+        {
+            Console.Write("Enter the title:");
+            string title = Console.ReadLine();
+
+            Console.Write("Enter director first name:");
+            string directorFirstName = Console.ReadLine();
+
+            Console.Write("Enter director last name:");
+            string directorLastName = Console.ReadLine();
+            int directorId = movieService.GetDirectorId(directorFirstName, directorLastName);
+
+            Console.Write("Enter movie genre:");
+            string genre = Console.ReadLine();
+            int genreId = movieService.GetGenreId(genre);
+
+            Console.Write("Enter movie description:");
+            string description = Console.ReadLine();
+
+            Console.Write("Enter movie review(0-200 symbols):");
+            string review = Console.ReadLine();
+
+            Console.Write("Enter movie rating(1-10):");
+            decimal rating = decimal.Parse(Console.ReadLine());
+
+            movieService.InsertMovie(title, directorId, genreId, description, review, rating);
+        }
     }
 }

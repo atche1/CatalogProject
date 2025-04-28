@@ -58,5 +58,32 @@ namespace CatalogProject.Views
                 Console.WriteLine($"The book with title '{bookTitle}' doesn't exists!");
             }
         }
+        public void AddBook()
+        {
+            Console.Write("Enter the title:");
+            string title = Console.ReadLine();
+
+            Console.Write("Enter author first name:");
+            string authorFirstName = Console.ReadLine();
+
+            Console.Write("Enter author last name:");
+            string authorLastName = Console.ReadLine();
+            int authorId = bookService.GetAuthorId(authorFirstName, authorLastName);
+
+            Console.Write("Enter book genre:");
+            string genre = Console.ReadLine();
+            int genreId = bookService.GetGenreId(genre);
+
+            Console.Write("Enter book description:");
+            string description = Console.ReadLine();
+
+            Console.Write("Enter book review(0-200 symbols):");
+            string review = Console.ReadLine();
+
+            Console.Write("Enter book rating(1-10):");
+            decimal rating = decimal.Parse(Console.ReadLine());
+
+            bookService.InsertBook(title, authorId, genreId, description, review, rating);
+        }
     }
 }

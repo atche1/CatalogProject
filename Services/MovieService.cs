@@ -50,5 +50,48 @@ namespace CatalogProject.Services
                 }
             }
         }
+        public bool InsertMovie(string title, int directorId, int genreId, string description, string review, decimal rating)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var existingMovie = catalogContext.Movies.FirstOrDefault(m => m.Title == title);
+                if (existingMovie != null)
+                {
+                    return false;
+                }
+                var newMovie = new Movie
+                {
+                    Title = title,
+                    DirectorId = directorId,
+                    GenreId = genreId,
+                    Description = description,
+                    Review = review,
+                    Rating = rating
+                };
+                catalogContext.Movies.Add(newMovie);
+                catalogContext.SaveChanges();
+                return true;
+            }
+        }
+        public int GetDirectorId(string firstName, string lastName)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var director = catalogContext.Directors
+                    .FirstOrDefault(d => d.FirstName == firstName && d.LastName == lastName);
+                return director.Id;
+            }
+        }
+        public int GetGenreId(string genreName)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var genre = catalogContext.Genres
+                    .FirstOrDefault(g => g.GenreName == genreName);
+
+                return genre.Id;
+            }
+        }
     }
+
 }
