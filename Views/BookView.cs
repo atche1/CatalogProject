@@ -48,14 +48,14 @@ namespace CatalogProject.Views
         {
             Console.Write("Please enter the title of the book that you want to remove: ");
             string bookTitle = Console.ReadLine();
-            Book book = bookService.DeleteBookByName(bookTitle);
-            if (book != null)
+            bool result = bookService.DeleteBookByName(bookTitle);
+            if (result==true)
             {
                 Console.WriteLine("Successfully deleted!");
             }
             else
             {
-                Console.WriteLine($"The book with title '{book.Title}' doesn't exists!");
+                Console.WriteLine($"The book with title '{bookTitle}' doesn't exists!");
             }
         }
     }

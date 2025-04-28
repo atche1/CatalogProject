@@ -34,13 +34,20 @@ namespace CatalogProject.Services
                 return genre;
             }
         }
-        public Movie DeleteMovieByName(string movieTitle)
+        public bool DeleteMovieByName(string movieTitle)
         {
             using (var catalogContext = new CatalogContext())
             {
                 var movie = catalogContext.Movies.FirstOrDefault(m => m.Title == movieTitle);
-                catalogContext.SaveChanges();
-                return movie;
+                if (movie != null)
+                {
+                    catalogContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }

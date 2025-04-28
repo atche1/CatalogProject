@@ -47,15 +47,15 @@ namespace CatalogProject.Views
         public void RemoveMovieByName()
         {
             Console.Write("Please enter the title of the movie that you want to remove: ");
-            string bookTitle = Console.ReadLine();
-            Book book = bookService.DeleteBookByName(bookTitle);
-            if (book != null)
+            string movieTitle = Console.ReadLine();
+            bool result = movieService.DeleteMovieByName(movieTitle);
+            if (result == true)
             {
                 Console.WriteLine("Successfully deleted!");
             }
             else
             {
-                Console.WriteLine($"The book with title '{book.Title}' doesn't exists!");
+                Console.WriteLine($"The movie with title '{movieTitle}' doesn't exists!");
             }
         }
     }

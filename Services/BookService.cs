@@ -34,14 +34,21 @@ namespace CatalogProject.Services
                 return authors;
             }
         }
-        public Book DeleteBookByName(string bookTitle)
+        public bool DeleteBookByName(string bookTitle)
         {
             using (var catalogContext = new CatalogContext())
             {
-                var book = catalogContext.Books.FirstOrDefault(b => b.Title == bookTitle);
-                catalogContext.SaveChanges();
-                return book;
-            }//if a trqbva da e tuka
+                var book = catalogContext.Books.FirstOrDefault(b => b.Title == bookTitle); 
+                if (book != null)
+                {
+                    catalogContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }
