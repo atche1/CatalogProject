@@ -85,5 +85,41 @@ namespace CatalogProject.Views
 
             movieService.InsertMovie(title, directorId, genreId, description, review, rating);
         }
+        public void AddMovieReview()
+        {
+            Console.Write("Enter the title of the movie: ");
+            string movieTitle = Console.ReadLine();
+            Movie movie = movieService.GetMovieByName(movieTitle);
+            Console.Write("Enter movie review(0-200 symbols):");
+            string review = Console.ReadLine();
+            if (movie == null)
+            {
+                Console.WriteLine("Movie doesn't exist!");
+            }
+            else
+            {
+                movie.Review = review;
+                Console.WriteLine("Successfully added review.");
+            }
+
+        }
+        public void AddMovieRating()
+        {
+            Console.Write("Enter the title of the movie: ");
+            string movieTitle = Console.ReadLine();
+            Movie movie = movieService.GetMovieByName(movieTitle);
+            Console.Write("Enter movie rating(1-10):");
+            decimal rating = decimal.Parse(Console.ReadLine());
+            if (movie == null)
+            {
+                Console.WriteLine("Movie doesn't exist!");
+            }
+            else
+            {
+                movie.Rating = rating;
+                Console.WriteLine("Successfully added rating.");
+            }
+
+        }
     }
 }

@@ -41,12 +41,28 @@ namespace CatalogProject.Services
                 var movie = catalogContext.Movies.FirstOrDefault(m => m.Title == movieTitle);
                 if (movie != null)
                 {
+                    catalogContext.Movies.Remove(movie);
                     catalogContext.SaveChanges();
                     return true;
                 }
                 else
                 {
                     return false;
+                }
+            }
+        }
+        public Movie GetMovieByName(string movieTitle)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var movie = catalogContext.Movies.FirstOrDefault(m => m.Title == movieTitle);
+                if (movie != null)
+                {
+                    return movie;
+                }
+                else
+                {
+                    return null;
                 }
             }
         }
@@ -90,6 +106,40 @@ namespace CatalogProject.Services
                     .FirstOrDefault(g => g.GenreName == genreName);
 
                 return genre.Id;
+            }
+        }
+        public bool InsertMovieReview(string movieTitle, string review)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var movie = catalogContext.Movies.FirstOrDefault(m => m.Title == movieTitle);
+                if (movie.Review == null)
+                {
+                    movie.Review = review;
+                    catalogContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public bool InsertMovieRating(string movieTitle, int rating)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var movie = catalogContext.Movies.FirstOrDefault(m => m.Title == movieTitle);
+                if (movie.Rating == null)
+                {
+                    movie.Rating = rating;
+                    catalogContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }

@@ -41,12 +41,28 @@ namespace CatalogProject.Services
                 var book = catalogContext.Books.FirstOrDefault(b => b.Title == bookTitle); 
                 if (book != null)
                 {
+                    catalogContext.Books.Remove(book);
                     catalogContext.SaveChanges();
                     return true;
                 }
                 else
                 {
                     return false;
+                }
+            }
+        }
+        public Book GetBookByName(string bookTitle)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var book = catalogContext.Books.FirstOrDefault(b => b.Title == bookTitle);
+                if (book != null)
+                {
+                    return book;
+                }
+                else
+                {
+                    return null;
                 }
             }
         }
@@ -90,6 +106,40 @@ namespace CatalogProject.Services
                     .FirstOrDefault(g => g.GenreName == genreName);
 
                 return genre.Id;
+            }
+        }
+        public bool InsertBookReview(string bookTitle, string review)
+        {
+            using(var catalogContext = new CatalogContext())
+            {
+                var book = catalogContext.Books.FirstOrDefault(b => b.Title == bookTitle);
+                if (book.Review==null)
+                {
+                    book.Review = review;
+                    catalogContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public bool InsertBookRating(string bookTitle, int rating)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var book = catalogContext.Books.FirstOrDefault(b => b.Title == bookTitle);
+                if (book.Rating == null)
+                {
+                    book.Rating = rating;
+                    catalogContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }

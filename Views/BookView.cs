@@ -85,5 +85,41 @@ namespace CatalogProject.Views
 
             bookService.InsertBook(title, authorId, genreId, description, review, rating);
         }
+        public void AddBookReview()
+        {
+            Console.Write("Enter the title of the book: ");
+            string bookTitle = Console.ReadLine();
+            Book book = bookService.GetBookByName(bookTitle);
+            Console.Write("Enter book review(0-200 symbols):");
+            string review = Console.ReadLine();
+            if (book == null)
+            {
+                Console.WriteLine("Book doesn't exist!");
+            }
+            else
+            {
+                book.Review = review;
+                Console.WriteLine("Successfully added review.");
+            }
+            
+        }
+        public void AddBookRating()
+        {
+            Console.Write("Enter the title of the book: ");
+            string bookTitle = Console.ReadLine();
+            Book book = bookService.GetBookByName(bookTitle);
+            Console.Write("Enter book rating(1-10):");
+            decimal rating = decimal.Parse(Console.ReadLine());
+            if (book == null)
+            {
+                Console.WriteLine("Book doesn't exist!");
+            }
+            else
+            {
+                book.Rating = rating;
+                Console.WriteLine("Successfully added rating.");
+            }
+
+        }
     }
 }
