@@ -89,6 +89,25 @@ namespace CatalogProject.Services
                 return true;
             }
         }
+        public bool UpdateMovie(string title, int directorId, int genreId, string description, string review, decimal rating)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var existingMovie = catalogContext.Movies.FirstOrDefault(m => m.Title == title);
+                if (existingMovie == null)
+                {
+                    return false;
+                }
+                existingMovie.DirectorId = directorId;
+                existingMovie.GenreId = genreId;
+                existingMovie.Description = description;
+                existingMovie.Review = review;
+                existingMovie.Rating = rating;
+
+                catalogContext.SaveChanges();
+                return true;
+            }
+        }
         public int GetDirectorId(string firstName, string lastName)
         {
             using (var catalogContext = new CatalogContext())

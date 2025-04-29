@@ -89,6 +89,25 @@ namespace CatalogProject.Services
                 return true;
             }
         }
+        public bool UpdateBook(string title, int authorId, int genreId, string description, string review, decimal rating)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var existingBook = catalogContext.Books.FirstOrDefault(b => b.Title == title);
+                if (existingBook == null)
+                {
+                    return false;
+                }
+                existingBook.AuthorId = authorId;
+                existingBook.GenreId = genreId;
+                existingBook.Description = description;
+                existingBook.Review = review;
+                existingBook.Rating = rating;
+
+                catalogContext.SaveChanges();
+                return true;
+            }
+        }
         public int GetAuthorId(string firstName, string lastName)
         {
             using (var catalogContext = new CatalogContext())

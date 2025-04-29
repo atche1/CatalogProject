@@ -60,27 +60,27 @@ namespace CatalogProject.Views
         }
         public void AddMovie()
         {
-            Console.Write("Enter the title:");
+            Console.Write("Enter the title: ");
             string title = Console.ReadLine();
 
-            Console.Write("Enter director first name:");
+            Console.Write("Enter director first name: ");
             string directorFirstName = Console.ReadLine();
 
-            Console.Write("Enter director last name:");
+            Console.Write("Enter director last name: ");
             string directorLastName = Console.ReadLine();
             int directorId = movieService.GetDirectorId(directorFirstName, directorLastName);
 
-            Console.Write("Enter movie genre:");
+            Console.Write("Enter movie genre: ");
             string genre = Console.ReadLine();
             int genreId = movieService.GetGenreId(genre);
 
-            Console.Write("Enter movie description:");
+            Console.Write("Enter movie description: ");
             string description = Console.ReadLine();
 
-            Console.Write("Enter movie review(0-200 symbols):");
+            Console.Write("Enter movie review(0-200 symbols): ");
             string review = Console.ReadLine();
 
-            Console.Write("Enter movie rating(1-10):");
+            Console.Write("Enter movie rating(1-10): ");
             decimal rating = decimal.Parse(Console.ReadLine());
 
             movieService.InsertMovie(title, directorId, genreId, description, review, rating);
@@ -90,7 +90,7 @@ namespace CatalogProject.Views
             Console.Write("Enter the title of the movie: ");
             string movieTitle = Console.ReadLine();
             Movie movie = movieService.GetMovieByName(movieTitle);
-            Console.Write("Enter movie review(0-200 symbols):");
+            Console.Write("Enter movie review(0-200 symbols): ");
             string review = Console.ReadLine();
             if (movie == null)
             {
@@ -108,7 +108,7 @@ namespace CatalogProject.Views
             Console.Write("Enter the title of the movie: ");
             string movieTitle = Console.ReadLine();
             Movie movie = movieService.GetMovieByName(movieTitle);
-            Console.Write("Enter movie rating(1-10):");
+            Console.Write("Enter movie rating(1-10): ");
             decimal rating = decimal.Parse(Console.ReadLine());
             if (movie == null)
             {
@@ -120,6 +120,40 @@ namespace CatalogProject.Views
                 Console.WriteLine("Successfully added rating.");
             }
 
+        }
+        public void ChangeMovieInfo()
+        {
+            Console.Write("Enter the title of the movie you want to make changes on: ");
+            string movieTitle = Console.ReadLine();
+            Movie movie = movieService.GetMovieByName(movieTitle);
+            if (movie == null)
+            {
+                Console.WriteLine("Movie doesn't exist!");
+            }
+            else
+            {
+                Console.Write("Enter director first name: ");
+                string directorFirstName = Console.ReadLine();
+
+                Console.Write("Enter director last name:");
+                string directorLastName = Console.ReadLine();
+                int directorId = movieService.GetDirectorId(directorFirstName, directorLastName);
+
+                Console.Write("Enter movie genre:");
+                string genre = Console.ReadLine();
+                int genreId = movieService.GetGenreId(genre);
+
+                Console.Write("Enter movie description:");
+                string description = Console.ReadLine();
+
+                Console.Write("Enter movie review(0-200 symbols): ");
+                string review = Console.ReadLine();
+
+                Console.Write("Enter movie rating(1-10): ");
+                decimal rating = decimal.Parse(Console.ReadLine());
+
+                movieService.UpdateMovie(movieTitle, directorId, genreId, description, review, rating);
+            }
         }
     }
 }
