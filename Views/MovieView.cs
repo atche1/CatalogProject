@@ -18,6 +18,8 @@ namespace CatalogProject.Views
             {
                 Console.WriteLine($"- {movie.Title}");
             }
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void ShowAllDirectors()
         {
@@ -26,6 +28,16 @@ namespace CatalogProject.Views
             {
                 Console.WriteLine($"- {director.FirstName} {director.LastName}");
             }
+
+        }
+        public void ShowAllGenres()
+        {
+            List<Director> directors = movieService.GetAllDirectors();
+            foreach (var director in directors)
+            {
+                Console.WriteLine($"- {director.FirstName} {director.LastName}");
+            }
+
         }
         public void ShowMoviesByGenre()
         {
@@ -43,6 +55,8 @@ namespace CatalogProject.Views
             {
                 Console.WriteLine("There are no movies with this genre!");
             }
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void RemoveMovieByName()
         {
@@ -57,11 +71,16 @@ namespace CatalogProject.Views
             {
                 Console.WriteLine($"The movie with title '{movieTitle}' doesn't exists!");
             }
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void AddMovie()
         {
             Console.Write("Enter the title: ");
             string title = Console.ReadLine();
+
+            Console.WriteLine("Directors to choose from:");
+            ShowAllDirectors();
 
             Console.Write("Enter director first name: ");
             string directorFirstName = Console.ReadLine();
@@ -69,6 +88,9 @@ namespace CatalogProject.Views
             Console.Write("Enter director last name: ");
             string directorLastName = Console.ReadLine();
             int directorId = movieService.GetDirectorId(directorFirstName, directorLastName);
+
+            Console.WriteLine("Genres to choose from:");
+            
 
             Console.Write("Enter movie genre: ");
             string genre = Console.ReadLine();
@@ -84,6 +106,16 @@ namespace CatalogProject.Views
             decimal rating = decimal.Parse(Console.ReadLine());
 
             movieService.InsertMovie(title, directorId, genreId, description, review, rating);
+            if (movieService.InsertMovie(title, directorId, genreId, description, review, rating) ==true)
+            {
+                Console.WriteLine("Successfully added!");
+            }
+            else
+            {
+                Console.WriteLine("Successfully NOT added!!");
+            }
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void AddMovieReview()
         {
@@ -101,7 +133,8 @@ namespace CatalogProject.Views
                 movie.Review = review;
                 Console.WriteLine("Successfully added review.");
             }
-
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void AddMovieRating()
         {
@@ -119,7 +152,8 @@ namespace CatalogProject.Views
                 movie.Rating = rating;
                 Console.WriteLine("Successfully added rating.");
             }
-
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void ChangeMovieInfo()
         {
@@ -153,7 +187,11 @@ namespace CatalogProject.Views
                 decimal rating = decimal.Parse(Console.ReadLine());
 
                 movieService.UpdateMovie(movieTitle, directorId, genreId, description, review, rating);
+
+                Console.WriteLine("Successfully updated!");
             }
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void SearchMovieByDescription()
         {
@@ -172,6 +210,8 @@ namespace CatalogProject.Views
             {
                 Console.WriteLine("No movies found that match your description.");
             }
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
         public void ShowSortedMovies()
         {
@@ -181,6 +221,8 @@ namespace CatalogProject.Views
             {
                 Console.WriteLine($"- {movie}");
             }
+            Console.WriteLine("Press Enter to return to the main menu.");
+            Console.ReadLine();
         }
     }
 }
