@@ -155,5 +155,32 @@ namespace CatalogProject.Views
                 bookService.UpdateBook(bookTitle, authorId, genreId, description, review, rating);
             }
         }
+        public void SearchBookByDescription()
+        {
+            Console.Write("Enter book description: ");
+            string description = Console.ReadLine();
+            List<Book> books = bookService.MatchBookByDescription(description);
+            if (books!=null)
+            {
+                Console.WriteLine("Books that match your description: ");
+                foreach (Book book in books)
+                {
+                    Console.WriteLine($"- {book.Title}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No books found that match your description.");
+            }
+        }
+        public void ShowSortedBooks()
+        {
+            Console.WriteLine("Here are the sorted books: ");
+            List<Book> books = bookService.GetBooksAlphabetically();
+            foreach (Book book in books)
+            {
+                Console.WriteLine($"- {book}");
+            }
+        }
     }
 }

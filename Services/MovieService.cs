@@ -161,6 +161,29 @@ namespace CatalogProject.Services
                 }
             }
         }
+        public List<Movie> MatchMovieByDescription(string description)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var keywords = description.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                List<Movie> movies = catalogContext.Movies
+                    .Where(m => m.Description != null &&
+                                keywords.Any(kw => m.Description.ToLower().Contains(kw)))
+                    .ToList();
+                return movies;
+            }
+        }
+        public List<Movie> GetMoviesAlphabetically()
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                List<Movie> movies = catalogContext.Movies
+                    .OrderBy(m => m.Title)
+                    .ToList();
+                return movies;
+            }
+        }
     }
 
 }

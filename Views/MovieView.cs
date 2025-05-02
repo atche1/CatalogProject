@@ -27,7 +27,7 @@ namespace CatalogProject.Views
                 Console.WriteLine($"- {director.FirstName} {director.LastName}");
             }
         }
-        public void ShowBooksByGenre()
+        public void ShowMoviesByGenre()
         {
             Console.Write("Please enter the name of the genre you want to filter with: ");
             string genreName = Console.ReadLine();
@@ -153,6 +153,33 @@ namespace CatalogProject.Views
                 decimal rating = decimal.Parse(Console.ReadLine());
 
                 movieService.UpdateMovie(movieTitle, directorId, genreId, description, review, rating);
+            }
+        }
+        public void SearchMovieByDescription()
+        {
+            Console.Write("Enter movie description: ");
+            string description = Console.ReadLine();
+            List<Movie> movies = movieService.MatchMovieByDescription(description);
+            if (movies != null)
+            {
+                Console.WriteLine("Movies that match your description: ");
+                foreach (Movie movie in movies)
+                {
+                    Console.WriteLine($"- {movie.Title}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No movies found that match your description.");
+            }
+        }
+        public void ShowSortedMovies()
+        {
+            Console.WriteLine("Here are the sorted movies: ");
+            List<Movie> movies = movieService.GetMoviesAlphabetically();
+            foreach (Movie movie in movies)
+            {
+                Console.WriteLine($"- {movie}");
             }
         }
     }

@@ -161,5 +161,28 @@ namespace CatalogProject.Services
                 }
             }
         }
+        public List<Book> MatchBookByDescription(string description)
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                var keywords = description.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                List<Book> books = catalogContext.Books
+                    .Where(b => b.Description != null &&
+                                keywords.Any(kw => b.Description.ToLower().Contains(kw)))
+                    .ToList();
+                return books;
+            }
+        }
+        public List<Book> GetBooksAlphabetically()
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                List<Book> books = catalogContext.Books
+                    .OrderBy(b => b.Title)
+                    .ToList();
+                return books;
+            }
+        }
     }
 }
