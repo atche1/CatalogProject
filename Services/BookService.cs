@@ -34,6 +34,14 @@ namespace CatalogProject.Services
                 return authors;
             }
         }
+        public List<Genre> GetAllGenres()
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                List<Genre> genres = catalogContext.Genres.ToList();
+                return genres;
+            }
+        }
         public bool DeleteBookByName(string bookTitle)
         {
             using (var catalogContext = new CatalogContext())
@@ -144,7 +152,7 @@ namespace CatalogProject.Services
                 }
             }
         }
-        public bool InsertBookRating(string bookTitle, int rating)
+        public bool InsertBookRating(string bookTitle, decimal rating)
         {
             using (var catalogContext = new CatalogContext())
             {

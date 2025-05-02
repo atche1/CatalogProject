@@ -52,7 +52,6 @@ namespace CatalogProject
             Console.WriteLine("7. Add Rating to Movie");
             Console.WriteLine("8. Search for Movie by it's Description");
             Console.WriteLine("9. Sort Movies in Alphabetical Order");
-            Console.WriteLine("10. See all Directors");
             Console.WriteLine("0. Return to Main Menu");
             Console.Write("Select an option: ");
             string choice = Console.ReadLine();
@@ -86,9 +85,6 @@ namespace CatalogProject
                 case "9":
                     movieView.ShowSortedMovies();
                     break;
-                case "10":
-                    movieView.ShowAllDirectors();
-                    break;
                 case "0":
                     return;
                 default:
@@ -111,7 +107,6 @@ namespace CatalogProject
             Console.WriteLine("7. Add Rating to Book");
             Console.WriteLine("8. Search for Book by it's Description");
             Console.WriteLine("9. Sort Books in Alphabetical Order");
-            Console.WriteLine("10. See all Authors");
             Console.WriteLine("0. Return to Main Menu");
             Console.Write("Select an option: ");
             string choice = Console.ReadLine();
@@ -144,9 +139,6 @@ namespace CatalogProject
                     break;
                 case "9":
                     bookView.ShowSortedBooks();
-                    break;
-                case "10":
-                    bookView.ShowAllAuthors();
                     break;
                 case "0":
                     return;

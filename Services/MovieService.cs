@@ -26,6 +26,14 @@ namespace CatalogProject.Services
                 return directors;
             }
         }
+        public List<Genre> GetAllGenres()
+        {
+            using (var catalogContext = new CatalogContext())
+            {
+                List<Genre> genres = catalogContext.Genres.ToList();
+                return genres;
+            }
+        }
         public List<Movie> FilterMoviesByGenre(string genreName)
         {
             using (var catalogContext = new CatalogContext())
@@ -144,7 +152,7 @@ namespace CatalogProject.Services
                 }
             }
         }
-        public bool InsertMovieRating(string movieTitle, int rating)
+        public bool InsertMovieRating(string movieTitle, decimal rating)
         {
             using (var catalogContext = new CatalogContext())
             {
