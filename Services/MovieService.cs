@@ -173,15 +173,19 @@ namespace CatalogProject.Services
         {
             using (var catalogContext = new CatalogContext())
             {
-                var keywords = description.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                var lowerDescription = description.ToLower();
+                var keywords = lowerDescription.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                List<Movie> movies = catalogContext.Movies
+                var movies = catalogContext.Movies
+                    .AsEnumerable() 
                     .Where(m => m.Description != null &&
                                 keywords.Any(kw => m.Description.ToLower().Contains(kw)))
                     .ToList();
+
                 return movies;
             }
         }
+
         public List<Movie> GetMoviesAlphabetically()
         {
             using (var catalogContext = new CatalogContext())

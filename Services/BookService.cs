@@ -173,12 +173,15 @@ namespace CatalogProject.Services
         {
             using (var catalogContext = new CatalogContext())
             {
-                var keywords = description.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                var lowerDescription = description.ToLower();
+                var keywords = lowerDescription.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                List<Book> books = catalogContext.Books
+                var books = catalogContext.Books
+                    .AsEnumerable()
                     .Where(b => b.Description != null &&
                                 keywords.Any(kw => b.Description.ToLower().Contains(kw)))
                     .ToList();
+
                 return books;
             }
         }
