@@ -5,7 +5,10 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogProject", "CatalogProject.csproj", "{9F08CB90-1CE3-488F-BFBB-45D23E8A505B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogProjectFormsApp", "..\CatalogProjectFormsApp\CatalogProjectFormsApp.csproj", "{F8B1B4B0-1384-4072-9F8A-950697AD4686}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogProjectForms", "CatalogProjectForms\CatalogProjectForms.csproj", "{62C0601C-C3AF-472B-902D-2B7BC270FD6D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F08CB90-1CE3-488F-BFBB-45D23E8A505B} = {9F08CB90-1CE3-488F-BFBB-45D23E8A505B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +20,10 @@ Global
 		{9F08CB90-1CE3-488F-BFBB-45D23E8A505B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F08CB90-1CE3-488F-BFBB-45D23E8A505B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F08CB90-1CE3-488F-BFBB-45D23E8A505B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8B1B4B0-1384-4072-9F8A-950697AD4686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8B1B4B0-1384-4072-9F8A-950697AD4686}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8B1B4B0-1384-4072-9F8A-950697AD4686}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8B1B4B0-1384-4072-9F8A-950697AD4686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C0601C-C3AF-472B-902D-2B7BC270FD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C0601C-C3AF-472B-902D-2B7BC270FD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C0601C-C3AF-472B-902D-2B7BC270FD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C0601C-C3AF-472B-902D-2B7BC270FD6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
